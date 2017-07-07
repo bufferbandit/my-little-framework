@@ -1,17 +1,5 @@
 import inspect,os
 
-def import_from_parent_dir(module,folder):
-    global imported_module
-    py_module = module + ".py"
-    import os,sys
-    sys.path.append(
-        os.path.dirname(
-            os.path.expanduser( folder+module )
-            )
-        )
-    imported_module = __import__(module)
-
-
 def import_from_sub_dir(_module):
     mod = getattr(
                 getattr(
@@ -20,9 +8,6 @@ def import_from_sub_dir(_module):
                 )
     return getattr(mod,_module.split(".")[-1])
  
-
-    
-
 
 def get_arg_len(module):
     return int(
@@ -48,17 +33,17 @@ def check_arguments(command, care_package):
     if required_arguments == 0 and given_arguments > 0:
         print("[!] Module: '{}' doesn't require any arguments".format(
                          _command))
-        return 0
+        return False
     if required_arguments <  given_arguments:
         print("[!] You've entered too many arguments")
         print(" |  module: '{0}' only requires {1} argument(s) instead of {2}".format(
                          _command,         required_arguments,         given_arguments  ))
-        return 0
+        return False
     if required_arguments >  given_arguments:
         print("[!] You've entered too few arguments")
         print(" |  module: '{0}' requires {1} argument(s) instead of {2}".format(
                          _command,         required_arguments,         given_arguments  ))
-        return 0
+        return False
     if required_arguments ==  given_arguments:
-        return 1
+        return True
 
