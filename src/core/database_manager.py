@@ -61,8 +61,7 @@ def sql_add_data(db,name,_list,mode="w"):
     #c.close()
 
 def sql_read_data(db,table):
-    conn = sqlite3.connect(db)
-    c    = conn.cursor()
+    c = db
     try:
         c.execute(
             """
