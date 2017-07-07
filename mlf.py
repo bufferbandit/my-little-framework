@@ -17,6 +17,8 @@ def main():
         except KeyboardInterrupt:
             print("\n[*] Goodbye (∗ ･‿･)ﾉ゛")
             return
+        if c.startswith("#") or c.startswith("//") :
+            continue
 
         if c: 
             try:
