@@ -2,7 +2,7 @@ import sys, os
 from collections import Counter
 def stockpile_manager():
     available_modules = []
-    excludes = ["clear.py","_exit.py","_clear.py","help.py","import_helper.py","banner.py","_print.py","_list.py"]
+    excludes = ["clear.py","_exit.py","_clear.py","help.py","import_helper.py","banner.py","_print.py","_list.py","python.py"]
     for item in os.listdir("./src/modules/"):
         if item.endswith(".py") and item not in excludes:
             
