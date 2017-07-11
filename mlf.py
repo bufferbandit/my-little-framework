@@ -17,7 +17,11 @@ def main():
         except KeyboardInterrupt:
             print("\n[*] Goodbye (∗ ･‿･)ﾉ゛")
             return
-        if c.startswith("#") or c.startswith("//") :
+        try:
+            if c.startswith("#") or c.startswith("//") :
+                continue
+        except AttributeError:
+            #print("[!] Please enter a command")
             continue
 
         if c: 
