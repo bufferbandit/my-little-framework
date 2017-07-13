@@ -1,8 +1,10 @@
 import sys, os
 from collections import Counter
-def stockpile_manager():
+def stockpile_manager(verbose=True):
     available_modules = []
-    excludes = ["clear.py","_exit.py","_clear.py","help.py","import_helper.py","banner.py","_print.py","_list.py","python.py"]
+    excludes = ["clear.py","_exit.py","_clear.py","help.py",
+                "import_helper.py","banner.py","_print.py",
+                "_list.py","poke.py","ls.py","cat.py"]
     for item in os.listdir("./src/modules/"):
         if item.endswith(".py") and item not in excludes:
             
@@ -11,7 +13,10 @@ def stockpile_manager():
             else:
                 available_modules.append(item.replace(".py",""))
     if len(available_modules) > 0:
-        print("[*] Current {0} module(s) in stock are:".format(len(available_modules)))   
+        if verbose:
+            print("[*] Current {0} module(s) in stock are:".format(len(available_modules)))   
+        else:
+            pass
     else:
         pass
     return available_modules
