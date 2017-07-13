@@ -28,6 +28,7 @@ def check_arguments(command, care_package):
     given_arguments = len(command.split()) - 1
     
     _command = command.split()[0]
+    if _command.startswith("_"):_command = _command[1::]
 
 
     if required_arguments == 0 and given_arguments > 0:
