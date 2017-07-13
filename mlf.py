@@ -1,4 +1,4 @@
-# My little framework. By Bufferbandit.
+# Flashgun SWF toolkit. By Bufferbandit.
 import src.core.argument_manager   as argument_manager
 import src.core.banner_manager     as banner_manager
 import src.core.import_manager     as import_manager 
@@ -9,13 +9,13 @@ import src.core.translate_manager  as translate_manager
 import os
 debug = 0
 
-def main():
+def __main__():
     global care_package, base,j,c
     while True:
         try:
-            c = translate_manager.filter_command(input("Mlf> "))
+            c = translate_manager.filter_command(input("Fg> "))
         except KeyboardInterrupt:
-            print("\n[*] Goodbye (∗ ･‿･)ﾉ゛")
+            print("\n[*] Goodbye ( ･‿･)ﾉ゛")
             return
         try:
             if c.startswith("#") or c.startswith("//") :
@@ -45,8 +45,14 @@ def main():
         elif not c:
             #print("[!] Please enter a command")
             continue
+       
         
-        
+if __name__ == "__main__":
+    #pass
+    print(banner_manager.banner())
+    __main__()
+    
+
 if __name__ == "__main__":
     print(banner_manager.banner())
     main()
