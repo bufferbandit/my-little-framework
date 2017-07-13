@@ -12,7 +12,7 @@ def python():
     blockstarts = ("if","else","def","class","with","for","try","except","while")
     inblock = False                             # We're not in a block yet
     prefix = "Py >>> "                          # Initialize the prefix
-    with open("client","w") as c:c.write('')    # Clean out the file on a new run
+    #with open("client","w") as c:c.write('')    # Clean out the file on a new run
     while 1:                                    # Start the loop
         i = input(prefix)                       # Set input
         c = open("data/.commands","a")               # Open the (hidden) command file
