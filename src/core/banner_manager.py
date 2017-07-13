@@ -43,7 +43,7 @@ def banner():
                   .:i7LJYJcc7Lrri:::::,:,:,,.:rJt2JUjULL77Y1UfUFJ7r.,:,,,Jr
                            ...,.rti::,:,:,:,,..   rh1c7rLUhUtjf2Jr,.:,:,c7.
                            
-    My little framework v2.0 by bufferbandit.
+    My little framework v2.4 by bufferbandit.
     Create your own framework!
     """
     return banner
