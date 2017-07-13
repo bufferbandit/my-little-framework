@@ -3,15 +3,17 @@ import src.core.database_manager  as database_manager
 def filter_command(command):
     global base
     alliassed = {
-                "quit" : "_quit",
-                "?"    : "help",
-                "exit" : "_exit",
-                "with" : "_with",
-                "list" : "_list",
-                "view" : "_list",
-                "cls"  : "clear",
-                "print": "_print",
-                "echo" : "_print"
+                "quit"      :   "_quit",
+                "?"         :   "help",
+                "exit"      :   "_exit",
+                "with"      :   "_with",
+                "list"      :   "_list",
+                "view"      :   "_list",
+                "cls"       :   "clear",
+                "print"     :   "_print",
+                "echo"      :   "_print",
+                "py"        :   "python",
+                "dir"       :   "ls"
                 }
     if command == "":
         return 0
@@ -27,8 +29,7 @@ def filter_argument(argument):
     if len(contains_index) > 0:
         table = argument.split("[")[0]
         index = int(contains_index[0])
-        #print(table)
-        #print( database_manager.sql_print_one('data/db.db',index,table) )
+      
             
     else:
         return argument
