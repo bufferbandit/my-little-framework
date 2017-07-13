@@ -38,7 +38,6 @@ def craft_module(command):
   
 
 def call_module(command,*args):
-    # = translate_manager.filter_argument(arg)
     
     try:
         module = craft_module(command.split()[0])
@@ -47,6 +46,10 @@ def call_module(command,*args):
         #print(arg)
         argument = filter_argument( command.split()[1] )
         module(argument)
+    except:
+        module()
+
+
     except:
         module()
 
