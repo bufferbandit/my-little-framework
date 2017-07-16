@@ -2,7 +2,10 @@ import re
 import src.core.database_manager  as database_manager
 import src.core.translate_manager as translate_manager
 
+
+        
 def filter_argument(argument):
+    argument = "".join(argument)
     contains_index = re.findall(r"\[([0-9_]+)\]",argument)
     if len(contains_index) > 0:
         table  = argument.split("[")[0]
@@ -12,17 +15,18 @@ def filter_argument(argument):
 
     else:
         return argument
+    print(argument)
     
-def import_from_parent_dir(module,folder):
-    global imported_module
-    py_module = module + ".py"
-    import os,sys
-    sys.path.append(
-        os.path.dirname(
-            os.path.expanduser( folder+module )
-            )
-        )
-    imported_module = __import__(module)
+
+def filter_two(argument):
+    if len(argument) > 1:
+        for index,_argument in enumerate(argument):
+             argument[index] = filter_argument(_argument)
+        return argument
+    else:
+        return argument
+        
+
 
 def craft_module(command):
     try:
@@ -39,14 +43,22 @@ def craft_module(command):
 
 def call_module(command,*args):
     
-    try:
+    try: 
         module = craft_module(command.split()[0])
-        
         arg = translate_manager.filter_argument(command.split()[1])
-        #print(arg)
-        argument = filter_argument( command.split()[1] )
+        argument =  command.split()[1::]   
+        filter_two(argument)
+        if len(argument) == 1:
+            argument = filter_argument(argument)
+            
+        module(*argument)
+    except IndexError:
+        module()
+    except TypeError:
+        argument = filter_argument(argument)
         module(argument)
-    except:
+
+
         module()
 
 
