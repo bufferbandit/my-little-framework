@@ -60,6 +60,80 @@ def sql_add_data(db,name,_list,mode="w"):
         conn.commit() 
     #c.close()
 
+def sql_read_data(db,table,embeded=False):
+    if embeded:
+        c = db
+    else:
+        conn = sqlite3.connect(db)
+        c    = conn.cursor()
+    try:
+        c.execute(
+            """
+            SELECT * FROM {0}; 
+            """.format(table)
+                 )
+        result = c.fetchall()
+        #c.close()
+        return result
+    except sqlite3.OperationalError:
+        return False
+
+def sql_print_all(db,table):
+    conn = sqlite3.connect(db)
+    c    = conn.cursor()
+    gett = sql_read_data(c,table,True)
+    try:
+        for pack in gett:
+            print("[" + str(pack[0]) + "] " + pack[1])
+    except TypeError:
+        return False
+
+def sql_print_one(db,index,table):
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    try:
+        return sql_read_data(c,table,True)[index-1][-1]
+    except IndexError:
+        return 0
+    except TypeError:
+        return 0
+    
+def sql_whats_in_store(db):
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    c.execute(
+        """
+        SELECT name FROM sqlite_master
+        WHERE type='table';
+        """
+        )
+    ret = []        ; fetched = c.fetchall()
+    for i in fetched: ret.append(i[0])
+    return            ret
+    
+def sql_drop(db,table):
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    c.execute(
+                """
+                 DROP TABLE IF EXISTS {0}
+                """.format(table)
+
+                )
+
+    for num, data in enumerate(_list,start=1):
+        
+        c.execute(
+            """
+        
+             INSERT INTO {0}
+             (VALUE) VALUES ('{1}')
+             
+            """.format(name,  data )
+                  )
+        conn.commit() 
+    #c.close()
+
 def sql_read_data(db,table):
     c = db
     try:
